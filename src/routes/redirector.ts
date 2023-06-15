@@ -1,17 +1,16 @@
 import { Request, Response, Router } from 'express';
-import { SHORT_LINKS } from './base-route.js';
 import { redirectRequest } from 'routes/redirector';
+import { findRecord } from '../core/redis/cache.js';
 
 const app = Router()
 
-app.get('/:id', (req: Request<redirectRequest.TParams>, res: Response) => {
+app.get('/:id', async (req: Request<redirectRequest.TParams>, res: Response) => {
     const { params: { id } } = req
-    const destination: string | null = SHORT_LINKS[id]
-    
+    const destination: string | false = await findRecord(id)
+
     if (destination) {
         return res.redirect(destination)
     }
-    
     return res.sendStatus(404)
 })
 
