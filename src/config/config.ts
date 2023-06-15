@@ -3,5 +3,7 @@ export const PORT = 8080
 export const ENV = {
     NODE_ENV: process.env.NODE_ENV || 'production',
     PORT: process.env.PORT,
-    NPM_VERSION: process.env.npm_package_version
+    NPM_VERSION: process.env.npm_package_version,
+    REDIS_KEY: process.env.REDIS_KEY,
+    REDIS_API: process.env.REDIS_API
 }
