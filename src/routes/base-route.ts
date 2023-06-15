@@ -1,35 +1,22 @@
 import { Router, Request, Response } from 'express';
-import crypto from 'crypto'
 import { ExpressResponse } from '../core/utils/response.js';
 import { queryRequest, newRequest } from 'routes/base-route';
-import { TRes } from 'utils/response';
+import { generateKey } from '../core/utils/keyGen.js';
+import { fetchKeys } from '../core/redis/cache.js';
 
 const app = Router()
 
-interface TShortLinks {
-    [key: string]: string
-}
-
-export const SHORT_LINKS: TShortLinks = {}
-
-app.post('/new', (req: Request<object, object, newRequest.TReq>, res: Response) => {
+app.post('/new', async (req: Request<object, object, newRequest.TReq>, res: Response) => {
     const { body: { url } } = req
-
-    const randomString = crypto.randomBytes(6).toString('hex')
-    SHORT_LINKS[randomString] = url
+    const key = await generateKey(4, url)
 
     return ExpressResponse(res, true, 200, {
-        link: `https://xtream360.com/${ randomString }`
+        link: `https://xtream360.com/${ key }`
     })
 })
 
-app.get('/query', (req: Request<queryRequest.TParams, TRes, queryRequest.TReq, queryRequest.TQuery>, res: Response) => {
-    const response = {
-        params: req.params.city,
-        body: req.body.data,
-        query: req.query.user
-    }
-    return ExpressResponse(res, true, 200, response)
+app.get('/directory', async (req: Request<object, object, object, queryRequest.TQuery>, res: Response) => {
+    return ExpressResponse(res, true, 200, await fetchKeys())
 })
 
 export default app
