@@ -40,6 +40,7 @@ app.use('*', (req: Request, res: Response) => {
 })
 
 const server = app.listen(process.env.PORT || PORT, () => {
+    console.log(process.env.SAMANTHA_ULTRA_PRO_MAX)
     const { address, port } = server.address() as AddressInfo
     console.log(`Server is Running in [${ process.env.NODE_ENV.toUpperCase() }] http://${ address }:${ port }`)
 })
