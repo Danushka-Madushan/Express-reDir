@@ -6,7 +6,9 @@ declare global {
         interface ProcessEnv {
             NODE_ENV: 'production' | 'development',
             PORT: number,
-            npm_package_version: string
+            npm_package_version: string,
+            REDIS_KEY: string,
+            REDIS_API: string
         }
     }
 }
