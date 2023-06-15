@@ -1,2 +1,58 @@
-# Node-TypeScript
-Express web apps using TypeScript
+##### URL Redirection Service
+
+`API Usage`
+
+> POST
+> 
+> ```bash
+> curl --location 'https://xtream360.com/api/new' \
+> --header 'Content-Type: application/json' \
+> --data '{
+>     "url": "https://github.com/Danushka-Madushan/Express-reDir"
+> }'
+> ```
+> 
+> `200 - Success`
+> 
+> ```json
+> {
+>     "success": true,
+>     "data": {
+>         "link": "https://xtream360.com/xGn8"
+>     }
+> }
+> ```
+
+> GET
+> 
+> ```bash
+> curl --location 'https://xtream360.com/api/directory'
+> ```
+> 
+> `200 - Success`
+> 
+> ```json
+> {
+>     "success":true,
+>     "data":[
+>         {
+>             "key":"xGn8",
+>             "destination":"https://github.com/Danushka-Madushan/Express-reDir"
+>         }
+>     ]
+> }
+> ```
+
+> GET
+> 
+> ```bash
+> curl --location 'https://xtream360.com/api/version'
+> ```
+> 
+> ```json
+> {
+>     "status":"OK",
+>     "version":"1.4.0",
+>     "message":"server is up and running..."
+> }
+> ```
