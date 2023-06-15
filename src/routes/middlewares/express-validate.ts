@@ -4,9 +4,9 @@ import Joi, { ValidationResult } from 'joi';
 
 const ExpressSchemas = async (req: Request): Promise<ValidationResult | boolean> => {
     switch (req.originalUrl) {
-        case '/api/v2/set' : {
+        case '/api/new' : {
             return await Joi.object({
-                id: Joi.string().required()
+                url: Joi.string().uri().required()
             }).validateAsync(req.body) as ValidationResult
         }
         default: {
