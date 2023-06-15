@@ -8,6 +8,7 @@ import { AddressInfo } from 'src/index'
 import { PORT } from './config/config.js'
 
 import Routes from './routes/base-route.js'
+import Redirector from './routes/redirector.js'
 
 const app: Application = express()
 
@@ -21,6 +22,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 })
 
 app.use(ExpressRequest)
+
+app.use('/', Redirector)
 
 app.use('/api', Routes)
 
