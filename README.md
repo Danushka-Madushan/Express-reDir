@@ -12,8 +12,6 @@
 > }'
 > ```
 > 
-> `200 - Success`
-> 
 > ```json
 > {
 >     "success": true,
@@ -28,8 +26,6 @@
 > ```bash
 > curl --location 'https://xtream360.com/api/directory'
 > ```
-> 
-> `200 - Success`
 > 
 > ```json
 > {
