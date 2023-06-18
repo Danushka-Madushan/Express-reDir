@@ -13,20 +13,17 @@ COPY package*.json ./
 # Copy tsconfig.json
 COPY tsconfig.json ./
 
-# Copy Source Code
-COPY src ./src
-
-# Install app dependencies
-RUN npm install
+# Copy the supervisord configuration file
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy the rest of the application code
 COPY . .
 
-# Copy the supervisord configuration file
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 # Expose the necessary ports
 EXPOSE 8080 6379
+
+# Install app dependencies
+RUN npm install
 
 # Define the command to start supervisord
 CMD [ "/usr/bin/supervisord", "-c", "./supervisord.conf" ]
