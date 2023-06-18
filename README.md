@@ -2,7 +2,7 @@
 
 `API Usage`
 
-> POST
+> `POST`
 > 
 > ```bash
 > curl --location 'https://xtream360.com/api/new' \
@@ -21,7 +21,7 @@
 > }
 > ```
 
-> GET
+> `GET`
 > 
 > ```bash
 > curl --location 'https://xtream360.com/api/directory'
@@ -39,7 +39,7 @@
 > }
 > ```
 
-> GET
+> `GET`
 > 
 > ```bash
 > curl --location 'https://xtream360.com/api/version'
