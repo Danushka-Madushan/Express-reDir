@@ -1,13 +1,6 @@
 import { createClient } from 'redis'
-import { ENV } from '../../config/config.js'
 
-export const RedisClient = createClient({
-    password: ENV.REDIS_KEY,
-    socket: {
-        host: ENV.REDIS_API,
-        port: 17823
-    }
-})
+export const RedisClient = createClient()
 
 RedisClient.on('error', (err) => {
     console.log('Redis Client Error', err)
