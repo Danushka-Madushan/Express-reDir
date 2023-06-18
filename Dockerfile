@@ -23,7 +23,7 @@ COPY . .
 EXPOSE 8080 6379
 
 # Install app dependencies
-RUN npm install
+RUN npm ci --omit=dev
 
 # Define the command to start supervisord
 CMD [ "/usr/bin/supervisord", "-c", "./supervisord.conf" ]
