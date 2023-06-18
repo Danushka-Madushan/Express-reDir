@@ -27,7 +27,9 @@ export const fetchKeys = async (): Promise<object> => {
 
     const keys: TKeys[] = []
 
-    for await (const key of RedisClient.scanIterator()) {
+    const records = RedisClient.scanIterator()
+    
+    for await (const key of records) {
         const value = await RedisClient.get(key)
         keys.push({
             key: key,
