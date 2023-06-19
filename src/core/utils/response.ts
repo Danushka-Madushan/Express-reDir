@@ -1,6 +1,7 @@
 import { Response } from 'express'
 import { TRes, TData } from 'utils/response'
 
+/* Default Response */
 export const ExpressResponse = (res: Response, status: boolean, code: number, data: TData ): void => {
     const response = {
         success: status,
