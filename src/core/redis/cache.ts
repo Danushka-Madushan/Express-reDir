@@ -1,41 +1,26 @@
 import { RedisClient } from './connection.js'
 
+/* Find record from redis-cache */
 export const findRecord = async (key: string) => {
     const dest = await RedisClient.get(key)
     if (dest) { return dest }
     return false
 }
 
+/* Upsert (Update if present otherwise Insert) new record */
+export const upsertRecord = async (key: string | null, value: string): Promise<boolean> => {
+    if (key) {
+        await RedisClient.set(key, value)
+        return true
+    }
+    return false
+}
+
+/* Insert new record. if already assigned the return false */
 export const insertRecord = async (key: string, value: string) => {
     if (await RedisClient.exists(key) === 1) {
         return false
     }
-
-    await RedisClient.set(key, value, {
-        EX: 30 * 24 * 60 * 60,
-        NX: true
-    })
-
-    return true
-}
-
-export const fetchKeys = async (): Promise<object> => {
-    interface TKeys {
-        key: string,
-        destination: string | false
-    }
-
-    const keys: TKeys[] = []
-
-    const records = RedisClient.scanIterator()
     
-    for await (const key of records) {
-        const value = await RedisClient.get(key)
-        keys.push({
-            key: key,
-            destination: value ?? false
-        })
-    }
-
-    return keys
+    return upsertRecord(key, value)
 }
