@@ -23,8 +23,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(ExpressRequest)
 
+/* Redirector */
 app.use('/', Redirector)
 
+/* API Routes */
 app.use('/api', Routes)
 
 app.get('/api/version', (req: Request, res: Response) => {
