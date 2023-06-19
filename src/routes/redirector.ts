@@ -4,6 +4,12 @@ import { findRecord } from '../core/redis/cache.js';
 
 const app = Router()
 
+/* Redirector */
+/*
+   This will look for a value under provided parameter, if present the request
+   will be redirected to the destination under the key. if not present a 404
+   not found will be send as resoponse
+*/
 app.get('/:id', async (req: Request<redirectRequest.TParams>, res: Response) => {
     const { params: { id } } = req
     const destination: string | false = await findRecord(id)
