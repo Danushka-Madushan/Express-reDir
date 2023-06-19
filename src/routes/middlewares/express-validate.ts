@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { ExpressResponse } from '../../core/utils/response.js';
 import Joi, { ValidationResult } from 'joi';
 
+/* Request body validation schema */
 const ExpressSchemas = async (req: Request): Promise<ValidationResult | boolean> => {
     switch (req.originalUrl) {
         case '/api/new' : {
