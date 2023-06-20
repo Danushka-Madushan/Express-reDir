@@ -7,8 +7,8 @@ declare global {
             NODE_ENV: 'production' | 'development',
             PORT: number,
             npm_package_version: string,
-            REDIS_KEY: string,
-            REDIS_API: string
+            FIREBASE_AUTH: string,
+            FIREBASE_API: string
         }
     }
 }
