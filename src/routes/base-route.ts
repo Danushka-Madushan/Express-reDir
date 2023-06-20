@@ -13,7 +13,7 @@ const app = Router()
 */
 app.post('/new', async (req: Request<object, object, newRequest.TReq>, res: Response) => {
     const { body: { url } } = req
-    const key = await generateKey(4, url)
+    const key = await generateKey(8, url)
 
     ExpressResponse(res, true, 200, {
         link: `https://xtream360.com/${ key }`
