@@ -1,8 +1,14 @@
 import { Request, Response, Router } from 'express';
 import { redirectRequest } from 'routes/redirector';
 import { findRecord } from '../core/redis/cache.js';
+import { DOMAIN_CONFIG } from '../config/config.js';
 
 const app = Router()
+
+/* Redirect the user to WebApp */
+app.get('/', (req: Request, res: Response) => {
+    return res.redirect(`https://${ DOMAIN_CONFIG.subDomain }.${ DOMAIN_CONFIG.Domain }`)
+})
 
 /* Redirector */
 /*

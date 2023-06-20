@@ -3,6 +3,7 @@ import { ExpressResponse } from '../core/utils/response.js';
 import { queryRequest, newRequest } from 'routes/base-route';
 import { generateKey } from '../core/utils/keyGen.js';
 import { Linksdb, fetchKeys } from '../core/firebase/database.js';
+import { DOMAIN_CONFIG } from '../config/config.js';
 
 const app = Router()
 
@@ -16,7 +17,7 @@ app.post('/new', async (req: Request<object, object, newRequest.TReq>, res: Resp
     const key = await generateKey(8, url)
 
     ExpressResponse(res, true, 200, {
-        link: `https://xtream360.com/${ key }`
+        link: `https://${ DOMAIN_CONFIG.Domain }/${ key }`
     })
     
     await Linksdb.update({ [key]: url })
