@@ -7,7 +7,7 @@ export const ENV = {
     PORT: process.env.PORT,
     /* Npm Package Version */
     NPM_VERSION: process.env.npm_package_version,
-    /* Firebase Authentication */
+    /* Firebase Authentication (firebase-credentials.json) */
     FIREBASE_AUTH: process.env.FIREBASE_AUTH,
     /* Firebase Database URI */
     FIREBASE_API: process.env.FIREBASE_API
