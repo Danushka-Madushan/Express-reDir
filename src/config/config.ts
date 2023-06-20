@@ -1,5 +1,10 @@
 export const PORT = 8080
 
+export const DOMAIN_CONFIG = {
+    subDomain: 'app',
+    Domain: 'xtream360.com'
+}
+
 export const ENV = {
     /* Node Environment */
     NODE_ENV: process.env.NODE_ENV || 'production',
