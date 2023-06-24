@@ -11,12 +11,15 @@ export const fetchKeys = async (): Promise<Array<TDatabase.TKeys>> => {
     const keys: TDatabase.TKeys[] = []
 
     const records = await Linksdb.once('value')
+    const dbEntries = records.val() as TDatabase.TEntries 
     
-    for (const [ key, value ] of Object.entries(records.val() as TDatabase.TEntries)) {
-        keys.push({
-            key: key,
-            destination: value
-        })
+    if (dbEntries) {
+        for (const [ key, value ] of Object.entries(dbEntries)) {
+            keys.push({
+                key: key,
+                destination: value
+            })
+        }
     }
 
     return keys
